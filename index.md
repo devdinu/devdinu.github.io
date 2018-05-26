@@ -6,9 +6,11 @@ Golang Enthusiast. Active in golang community
 
 [Go Slides and Screencasts](./go.md)
 
-Have experience in building high scale distributed systems, still learning.
+Have experience in building high scale distributed systems, always learning. 
 
+I beleive in impact, irrespective of whatever i do.
 
+[Projects](./projects.md)
 
 
 <br/>
