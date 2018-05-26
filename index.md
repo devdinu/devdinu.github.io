@@ -1,6 +1,12 @@
 # Dinesh Kumar
 
-Programmer, Developer, Engineer, so many names.
+Programmer, Developer, Engineer, so many names :)
+
+Golang Enthusiast. Active in golang community
+
+[Golang Screencasts](./screencasts.md)
+
+Learning and have experience in building high scale distributed systems.
 
 
 
