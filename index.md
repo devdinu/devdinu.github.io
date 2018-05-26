@@ -4,9 +4,9 @@ Programmer, Developer, Engineer, so many names :)
 
 Golang Enthusiast. Active in golang community
 
-[Golang Screencasts](./screencasts.md)
+[Go Slides and Screencasts](./go.md)
 
-Learning and have experience in building high scale distributed systems.
+Have experience in building high scale distributed systems, still learning.
 
 
 
