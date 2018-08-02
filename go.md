@@ -24,3 +24,4 @@ This repository has the experiments / resources which touches on multiple go con
 - [go 1.10 release](https://youtu.be/t-iiICzV-es)
 - [go concurrency](https://youtu.be/E03QTvgcJ8Q) Golang Meetup XXX
 - [Don't Just REST in HTTP, but gRPC](https://youtu.be/Tum1CXPwOAk) Golang Meetup XXXII
+- [Functional Options](https://youtu.be/xBYzglyidIc) Golang Meetup XXXIV
