@@ -1,8 +1,8 @@
 # Dinesh Kumar
 
-Programmer, Developer, Engineer, so many names :)
+Programmer, Developer, Engineer, ...
 
-Golang Enthusiast. Active in golang community
+Golang Enthusiast. Co-organiser of [Golang community](https://www.meetup.com/Golang-Bangalore/) and [GoStudyGroup](https://www.meetup.com/Go-Study-Group-India/).
 
 [Go Slides and Screencasts](./go.md)
 

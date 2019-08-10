@@ -10,3 +10,14 @@
 * https://www.shortcutfoo.com/app/dojos/awk/cheatsheet
 * https://www.thegeekstuff.com/2010/01/8-powerful-awk-built-in-variables-fs-ofs-rs-ors-nr-nf-filename-fnr/?ref=binfind.com/web
 * https://www.gnu.org/software/gawk/manual/gawk.html#Using-BEGIN_002fEND
+
+
+# Software Practice
+* http://blog.cleancoder.com/uncle-bob/2017/10/04/CodeIsNotTheAnswer.html
+
+# Security
+* https://tiptopsecurity.com/how-does-https-work-rsa-encryption-explained/
+
+
+# Vault & Kafka
+* https://opencredo.com/blogs/securing-kafka-using-vault-pki/
