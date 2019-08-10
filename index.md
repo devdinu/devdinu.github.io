@@ -12,6 +12,9 @@ I beleive in impact, irrespective of whatever i do.
 
 [Projects](./projects.md)
 
+Dev [Commands](./commands.md)
+
+[Distributed Systems](./projects/distributed_systems.md)
 
 <br/>
 <br/>
