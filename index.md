@@ -4,13 +4,16 @@ Programmer, Developer, Engineer, ...
 
 Golang Enthusiast. Co-organiser of [Golang community](https://www.meetup.com/Golang-Bangalore/) and [GoStudyGroup](https://www.meetup.com/Go-Study-Group-India/).
 
-[Go Slides and Screencasts](./go.md)
 
 Have experience in building high scale distributed systems, always learning. 
 
 I beleive in impact, irrespective of whatever i do.
 
 [Projects](./projects.md)
+
+[go](./go.md)
+
+[Talks](./talks.md)
 
 Dev [Commands](./commands.md)
 
