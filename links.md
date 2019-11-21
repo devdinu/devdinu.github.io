@@ -10,6 +10,7 @@
 * https://www.shortcutfoo.com/app/dojos/awk/cheatsheet
 * https://www.thegeekstuff.com/2010/01/8-powerful-awk-built-in-variables-fs-ofs-rs-ors-nr-nf-filename-fnr/?ref=binfind.com/web
 * https://www.gnu.org/software/gawk/manual/gawk.html#Using-BEGIN_002fEND
+* http://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html
 
 
 # Software Practice

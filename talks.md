@@ -2,6 +2,8 @@
 
 | Title | Conference | |
 | ---   | ---        | ---  |
+| Why you can't use Go | [Gophercon Vietnam 2019](https://gophercon.vn/#schedule) | November 2nd, 2019
+| [Beast](https://github.com/gojek/beast) processing kafka events | [DevFest Goa](https://www.meetup.com/GoogleGoa/events/264790819/) | [Sep 27th, 2019](https://www.linkedin.com/posts/gdg-goa-google-developer-groups_devfestgoa-devfest19-indiadevfest19-activity-6598164160629039104-1CC7)
 | [Beast](https://github.com/gojek/beast) Building A Beast to Process Millions of Kafka Events | [Fosscon India 2019](http://fosscon.in/speakers.html#) | August 30 2019
 | [Sharding with Go](https://www.youtube.com/watch?v=PisTip7hD_Q) lightning talk | [GopherCon India 2019](https://gopherconindia.com/#page-top) | January 18, 2019
 | [Gotchas in Go](https://youtu.be/mcfDwa9D6aQ?t=2302) lightning talk | [GopherCon India 2018]() | March 8, 2018
@@ -26,4 +28,5 @@
 | [Flags and Command](https://youtu.be/v9UpXthxrRY?t=9m50s) | Gostudygroup India I |
 | [Echo server and Proxy in Go](https://www.youtube.com/watch?v=H_Sk4xxKJkg) | Golang Meetup [#38](https://www.meetup.com/Golang-Bangalore/events/255970867/) | November 17, 2018
 | [Go HTTP Handler/HandlerFunc Tests](https://www.youtube.com/watch?v=Tx9uS1TAOWY) | Gostudygroup | October 2018
+
 

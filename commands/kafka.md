@@ -7,11 +7,21 @@ kafka-topics.sh --describe --topic kafka-topic-to-alter --zookeeper $ZOOS
 
 kafka-run-class kafka.tools.GetOffsetShell --broker-list localhost:9092 --topic test-messages-01
 ```
+
+
+## Kafka partitions reassignment
+```
+kafka-reassign-partitions.sh --bootstrap-server $KAFKAS --zookeeper $ZOOS  --broker-list "1,2,3,4,5,6,7,8,9,10,11,12" --topics-to-move-json-file topics-to-move.json --generate
+kafka-reassign-partitions.sh --bootstrap-server $KAFKAS --zookeeper $ZOOS --execute --reassignment-json-file proposal.json
+```
+
+
 ## Adminstration
 
 ```
 kafka-preferred-replica-election.sh --zookeeper $ZOOS
 kafka-topics.sh  --zookeeper $ZOOS --alter --topic $TOPIC --partitions 24
+kafka-consumer-groups.sh --bootstrap-server $KAFKAS --group $GROUP_ID --reset-offsets --all-topics --to-datetime=YYYY-MM-DDTHH:mm:SS.sss
 
 ```
 
