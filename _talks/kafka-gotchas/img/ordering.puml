@@ -1,0 +1,23 @@
+@startuml
+
+
+package product {
+    database DB
+    [microservice] -> [worker]
+    [worker] ..> DB
+    [worker] --> [worker]: Retry
+}
+
+node kafka {
+    [broker-0]
+    [broker-1]
+    [broker-3]
+    [broker-4]
+}
+
+[worker] -> kafka
+
+
+
+@enduml
+

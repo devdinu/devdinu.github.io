@@ -1,0 +1,17 @@
+@startuml
+    title duplicate message in kafka n/w failure
+
+    autonumber
+    database DB 
+    service <-> DB : read job (001) & process
+    activate service
+    service -> Kafka : publish message (001)
+    deactivate service
+    service x<-- Kafka : ack
+    service <-> DB : read job (001) & process
+    activate service
+    service -> Kafka : publish message (001)
+    service <-- Kafka : ack
+    service <-> DB : mark job as done
+    deactivate service
+@enduml

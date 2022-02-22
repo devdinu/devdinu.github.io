@@ -1,0 +1,40 @@
+@startuml
+
+title "uneven distribution of data in customer orders topic"
+
+
+state customer_orders {
+    partition0: Offset 210
+    partition1: Offset 212
+    partition2: Offset 223
+    partition3: Offset 5000123
+    partition4: Offset 220
+}
+
+state partition3 #Red
+
+state consumer0 {
+    p0:lag 100
+    p1:lag 0
+    p2:lag 32
+}
+
+state consumer1 #Red {
+    p3:lag 5000100
+    p4:lag 0
+}
+
+partition0 --> consumer0
+partition1 --> consumer0
+partition2 --> consumer0
+
+partition3 --> consumer1
+partition4 --> consumer1
+
+note bottom of partition3
+    High throughput uneven partition
+    Which 'll have high lag on consumer
+end note
+
+
+@enduml
