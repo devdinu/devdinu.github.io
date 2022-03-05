@@ -1,0 +1,13 @@
+@startuml
+
+
+state kafka {
+    state broker0 { 
+    }
+    state broker1 { 
+    }
+}
+
+
+
+@enduml

@@ -1,0 +1,159 @@
+Kafka Gotchas and Misconceptions
+05 March 2022
+
+Dineshkumar
+Senior Software Engineer @ elastic
+
+https://twitter.com/devdineshkumar
+https://devdinu.github.io/
+
+* About
+Senior Software Engineer @ Elastic
+
+    Have managed 30+ kafka clusters @ Gojek
+    Across different countries, different usecase (load, compaction etc)
+    ~ Billions of events / hour
+    Built and enhanced kafka ecosystem, giving it like PaaS for teams
+
+Go enthusiast.
+
+Interests: Simplifying, Monitoring, Alerting & Reliability of components.
+
+* Kafka Gotchas & Misconception
+
+* Terms
+- producer, consumer, topic, partition
+
+.image ./img/kafka_basic_architecture.png _ 900
+
+.caption _Architecture_ by [[https://kafka.apache.org/documentation/#intro_concepts_and_terms][kafka.apache.org]]
+* Consumer Commit offsets
+*Gotcha*: Default consumer config have auto commits offsets enabled
+
+- Stopping consumers while redeploying (or even crash) could cause redundant data consumption
+- Your store/sink could fail, and async processing is difficult or could lead to data loss
+- Ideal to commit only when processing is successful
+
+    msgs := poll()
+    ok := process(msgs)
+    if ok {
+        commit(offset)
+    }
+
+
+* Scalability / Partitions
+*Misconception*:  Scaling systems would is simply throwing resources and increasing partitions wrt kafka
+
+- Each partition assigned consumer instance/thread, which needs more system resources
+- file descriptor limits 
+- If you're pushing to database, you may run out of connections (maxconns)
+
+* Concurrent DB updates
+
+- If you're dealing with updates of DB records,
+
+    INSERT INTO orders (id, name, last_update)
+    VALUES (?, ?, ?) 
+    on conflict (id) DO
+        update set last_update = now()
+
+- lock, upsert, unlock
+- could cause lock contention leading to deadlocks in db
+
+* Custom Partitioning
+- *Gotcha*: You can leverage custom partitioning for ordering (partitioned at publisher end)
+
+- The data will not be evenly distributed across all partitions
+
+.image ./img/overloaded_partition.png
+
+- You can't scale partition 3 consumers anymore
+
+* Acks
+- *Gotcha*: Ack without minimum in sync replica could lead to data loss
+
+- acks set to -1 or all, will receive acknowledgement from all brokers (ISRs) once you produce
+
+* Mirror Maker (v1)
+*Misconception*: with mirror maker we can keep a standby and can seamlessly switch producers/consumers
+
+- If you're using mirror maker ensure you've right partitioning configuration
+
+- You'll lose ordering as it's similar to a producer & consumer
+
+* Ordering in Kafka
+- *Misconception*: Since kafka ensures ordering per partition, assuming you can acheive ordering in distributed-systems
+.image ./img/ordering.png
+
+* Duplicate messages
+- *Misconception* - You don't need to handle duplicates
+
+.image ./img/duplicate_message_network_failure.png
+
+- can be caused by n/w failure
+- similar to the last case, can be caused by a retry worker anywhere in the pipeline
+
+* Using single IP of kafka cluster
+In producer & consumers, use multiple kafka brokers address to prevent Single Point of Failure
+
+    kafka-01:9092,kafka-02:9092,kafka-03:9092
+
+* Tracing
+*Misconception*: It's easy to debug things on kafka
+
+- You can't figure out data loss of message
+- Not easy to know all consumers for a givent topic (consider regex consumers, mirrors etc)
+
+- Ensure you've tracing and propogate it as kafka headers, this's super critical if you've transformers, filters, aggregators etc.
+
+    service-1 --> kafka --> filter-service --> kafka --> aggregator --> kafka --> service-X
+
+* Scaling cluster
+*Misconception*: Scaling kafka cluster is easy
+
+- Adding/removing a new broker to kafka cluster requires topic re-assignment (and it's not intelligent yet, its random)
+- So as to evenly distribute data across brokers
+- It increases replication factor / ISR, causing +1 total brokers to ack increasing latency
+- Disk size ensure you define limits and use cold storage appropriately (depending on usecase)
+
+* Cluster upgrades / Migration
+
+*Misconception*: Cluster upgrades and migration is easy
+
+- Controlled rolling restarts with monitoring replication lag
+- Ensuring No offline partitions
+- Moving producers/consumers to new clusters is pain (it's hard to even track without inventory)
+- *Offsets
+
+* Guidelines
+
+- Ensure you've Monitoring, tracing in place
+
+*Consumer*
+
+- Prefer to avoid auto commit offsets
+- Scale consumers based on dependencies (DB, resources etc)
+- Use deadletter queue
+
+*Producer*
+
+- reliable configs: ack, linger.ms etc
+- Use worker to produce events to deal with loss
+- Prefer to avoid custom partitioning
+
+* Guidelines...
+
+*Admin*
+
+- Enable leadership-reelection
+- Have SSL, ACLs from the beginning
+- Use minion instead of burrow
+- Apt replication factor (>= 3)
+- configure retention by time and *size*
+
+* References
+
+.link https://programmer.ink/think/kafka-idempotent-implementation-of-kafka-transactional.html Idempotent Implementation of kafka
+.link https://www.confluent.io/blog/5-common-pitfalls-when-using-apache-kafka/ Confluent-blog pitfalls to avoid
+.link https://github.com/gojek/kafqa kafqa for e2e latency monitoring
+
