@@ -1,5 +1,5 @@
 Kafka Gotchas and Misconceptions
-05 March 2022
+08 September 2022
 
 Dineshkumar
 Senior Software Engineer @ elastic
@@ -10,12 +10,16 @@ https://devdinu.github.io/
 * About
 Senior Software Engineer @ Elastic
 
+    Working on backend/infrastructure on security product
     Have managed 30+ kafka clusters @ Gojek
     Across different countries, different usecase (load, compaction etc)
     ~ Billions of events / hour
-    Built and enhanced kafka ecosystem, giving it like PaaS for teams
+    Built and enhanced kafka ecosystem, PaaS for org/teams
 
-Go enthusiast.
+[[https://github.com/devdinu]]
+[[https://twitter.com/devdineshkumar]]
+
+Go enthusiast. Researching Reliability/Monitoring of systems.
 
 Interests: Simplifying, Monitoring, Alerting & Reliability of components.
 
@@ -140,6 +144,26 @@ In producer & consumers, use multiple kafka brokers address to prevent Single Po
 - reliable configs: ack, linger.ms etc
 - Use worker to produce events to deal with loss
 - Prefer to avoid custom partitioning
+
+* !Production Ready
+
+1. 3.0 or latest release without enough benchmarking and testing
+.link https://cwiki.apache.org/confluence/display/KAFKA/KIP-500%3A+Replace+ZooKeeper+with+a+Self-Managed+Metadata+Quorum KIP-500 - Replace zookeeper ...
+2. Running kafka on k8s 
+
+- networking/exposing
+- ephemeral containers (including consumers which can cause reabalancing)
+- resource limits & requests
+Even GCP VMs with soft restart have caused us anomalies
+
+3. No Monitoring & Alerting
+
+*
+
+.image ./img/kafka_metrics_dashboard.png _ 950
+
+*
+.image ./img/kafka_resources_metrics_dashboard.png _ 950
 
 * Guidelines...
 
