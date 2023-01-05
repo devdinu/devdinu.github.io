@@ -2,3 +2,6 @@ _site
 .ruby-version
 .DS_Store
 *.swp
+.obsidian/
+vendor/
+.bundle/

@@ -33,4 +33,3 @@
 | [Echo server and Proxy in Go](https://www.youtube.com/watch?v=H_Sk4xxKJkg)                           | Golang Meetup [#38](https://www.meetup.com/Golang-Bangalore/events/255970867/)                                            | November 17, 2018  |
 | [Go HTTP Handler/HandlerFunc Tests](https://www.youtube.com/watch?v=Tx9uS1TAOWY)                     | Gostudygroup                                                                                                              | October 2018       |
 
-
