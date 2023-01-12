@@ -5,20 +5,24 @@ highlightTheme: monokai
 layout: slides
 width: 1200
 height: 960
+display: "block"
+transition: "none"
+backgroundTransition: "none"
 ---
 
 ## Building High Scale Backend Systems
 
-*11 January 2022*
+*11 January 2023*
 
 Dineshkumar,
 Founder @ relyonmetrics
 
 [@devdineshkumar](https://twitter.com/devdineshkumar)
-[https://devdinu.github.io](https://devdinu.github.io/)
+[devdinu.github.io](https://devdinu.github.io/)
 
 ---
 # About
+
 
 Founder @ [relyonmetrics](http://relyonmetrics.com/)
 - Built backend for security platform @ [Elastic](https://www.elastic.co/), backend system for cmd.com
@@ -37,7 +41,9 @@ Founder @ [relyonmetrics](http://relyonmetrics.com/)
 
 # Basics
 
-Assume everything will fail!
+Assume everything will fail! :fire:
+
+![[production hotifx.gif]]
 
 ---
 
@@ -49,6 +55,15 @@ Assume everything will fail!
 - Logging 
 - Metrics
 - Circuit breaker to prevent cascading failure
+---
+
+# Simple
+
+- Disable debug logs
+- log id, latency and status codes to begin with
+- Testing (ensure you add tests for every failures) `#development`
+
+
 ---
 ## System
 - Replication
@@ -80,6 +95,8 @@ Assume everything will fail!
 ---
 
 ## HowTo / Tools
+
+few load balancing tools,
 
 - Kubernetes
 - HaProxy
@@ -121,7 +138,14 @@ Ensure whether the service will be fine for higher production load. Do 10x of es
 Tools: 
 *[wrk2](https://github.com/giltene/wrk2), gatling, ab, vegeta, k6, ...*
 
----
+--
+# Demo
+
+- Nginx service
+- 2 replicas
+- connected to postgres
+
+--
 
 ## Sample Vegeta Report
 
@@ -134,7 +158,7 @@ vegeta attack -targets backend  -duration=5s  -timeout=300s \
 ![[vegeta-latency-plot.png]]
 
 
----
+--
 
 *Service metrics plotted as histogram*
 
@@ -142,9 +166,8 @@ vegeta attack -targets backend  -duration=5s  -timeout=300s \
 
 ![[go service dashboard.png]]
 
-
-
 ---
+
 # Observability
 
 - Monitoring
@@ -157,6 +180,20 @@ vegeta attack -targets backend  -duration=5s  -timeout=300s \
 
 *topic deems separte discussion or session*
 
+--
+# Track resources
+
+![[heap allocations above threshold.png]]
+
+--
+# Alerting
+
+when metrics crosses a threshold or becomes anomaly
+- Performance Metrics (latency)
+- Rate change (throughput)
+- Failures (HTTP)
+
+![[slack-alerts.png]]
 ---
 
 # Architecture
@@ -197,6 +234,41 @@ Also keeping the system performant and stable.
 
 ![[04 event driven architecture extended.png]]
 
+---
+# Leaks
+
+resource leaks will be visible only during high load
+
+Few of them are,
+
+- Memory leaks
+- goroutines / thread leaks
+- file descriptor leaks
+
+--
+
+# Solution :fire:
+
+![[it_restart.gif]]
+
+--
+
+# Profiling
+
+```bash
+curl http://localhost:9100/debug/pprof/heap?seconds=60 -o api-server-snapshot
+go tool pprof -http=:3335  ./api-server-snapshot
+```
+
+![[pprof memory sampling.png]]
+
+---
+# Advanced
+
+- Don't go behind exactly once semantics
+- Be idempotent
+- Allow system wide partial failures
+- Build Asynchronous systems
 
 ---
 # Best Practices
@@ -209,13 +281,39 @@ Also keeping the system performant and stable.
 - Backward compatibility
 - Rollbacks
 - IAC / Automation
+
+---
+
+# :heavy_exclamation_mark:  <i class="fas fa-plug fa-sm" />
+
+Call for early adopters / design partners
+
+observability,  reliable infrastructure  *(kafka, postgres, redis, ...)*
+
+> Aiming to help companies prevent downtime and reduce friction with adoption & burnout in devops
+
+relyonmetrics.com
+
+---
+# Reference
+
+- Byzantine general's problem
+- CAP Theorem
+- [scalescape/go-metrics](https://github.com/scalescape/go-metrics)
+- [go offiical pprof pprof](https://go.dev/blog/pprof)
+- [pprof blog - julia evans](https://jvns.ca/blog/2017/09/24/profiling-go-with-pprof/)
+
 ---
 
 # Thanks
 
+![[fire working.gif]]
+
 ## Questions
 
-*Twitter: [@devdineshkumar](https://twitter.com/devdineshkumar)*
 
-*Github: [@devdinu](https://github.com/devdinu)*
+<i class="fab fa-twitter fa-sm fa-pull-left" />  *[@devdineshkumar](https://twitter.com/devdineshkumar)*
 
+<i class="fab fa-github fa-sm fa-pull-left" /> *[@devdinu](https://github.com/devdinu)*
+
+*[&copy; 2023 relyonmetrics](http://relyonmetrics.com/)*
