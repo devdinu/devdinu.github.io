@@ -129,7 +129,17 @@ http {
 
 [^1]: [Nginx Documentation for load balancing](https://nginx.org/en/docs/http/load_balancing.html)
 
+--
+
+redis cluster scaled up in k8s
+
+```bash
+helm upgrade redis-0 bitnami/redis --set replica.replicaCount=5
+```
+
+![[k8s redis deployment.png]]
 ---
+
 
 # Load Testing
 
@@ -304,7 +314,6 @@ relyonmetrics.com
 - [pprof blog - julia evans](https://jvns.ca/blog/2017/09/24/profiling-go-with-pprof/)
 
 ---
-
 # Thanks
 
 ![[fire working.gif]]
@@ -315,5 +324,7 @@ relyonmetrics.com
 <i class="fab fa-twitter fa-sm fa-pull-left" />  *[@devdineshkumar](https://twitter.com/devdineshkumar)*
 
 <i class="fab fa-github fa-sm fa-pull-left" /> *[@devdinu](https://github.com/devdinu)*
+
+<i class="fab fa-youtube fa-sm fa-pull-left" /> *[@relyonmetrics](https://www.youtube.com/@relyonmetrics)*
 
 *[&copy; 2023 relyonmetrics](http://relyonmetrics.com/)*
