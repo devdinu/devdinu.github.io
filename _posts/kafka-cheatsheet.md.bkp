@@ -1,3 +1,12 @@
+---
+title: kafka cheatsheet
+categories:
+    - kafka
+tags:
+    - kafka
+    - cheatsheet
+---
+
 # Kafka Commands
 
 ## Increase replication factor:
