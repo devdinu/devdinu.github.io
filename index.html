@@ -1,0 +1,14 @@
+---
+layout: home
+author_profile: true
+---
+
+{% capture index_md %}
+{% include_relative _pages/home.md %}
+{% include_relative _pages/community/talks.md %}
+{% endcapture %}
+
+<div class="markdown-content">
+  {{ index_md | markdownify }}
+</div>
+
