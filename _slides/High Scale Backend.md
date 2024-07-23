@@ -76,7 +76,7 @@ Assume everything will fail! :fire:
 
 *Monolith service with DB*
 
-![[00 simple service bottleneck.png]]
+*![[00 simple service bottleneck.png]]*
 
 
 ---

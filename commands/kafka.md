@@ -1,7 +1,7 @@
 # Kafka Commands
 
 ## Increase replication factor:
-```
+```bash
 kafka-reassign-partitions.sh --zookeeper $ZOOS --reassignment-json-file increase-replication-factor.json --execute
 kafka-topics.sh --describe --topic kafka-topic-to-alter --zookeeper $ZOOS
 
@@ -10,7 +10,7 @@ kafka-run-class kafka.tools.GetOffsetShell --broker-list localhost:9092 --topic 
 
 
 ## Kafka partitions reassignment
-```
+```bash
 kafka-reassign-partitions.sh --bootstrap-server $KAFKAS --zookeeper $ZOOS  --broker-list "1,2,3,4,5,6,7,8,9,10,11,12" --topics-to-move-json-file topics-to-move.json --generate
 kafka-reassign-partitions.sh --bootstrap-server $KAFKAS --zookeeper $ZOOS --execute --reassignment-json-file proposal.json
 ```
@@ -18,7 +18,7 @@ kafka-reassign-partitions.sh --bootstrap-server $KAFKAS --zookeeper $ZOOS --exec
 
 ## Adminstration
 
-```
+```bash
 kafka-preferred-replica-election.sh --zookeeper $ZOOS
 kafka-topics.sh  --zookeeper $ZOOS --alter --topic $TOPIC --partitions 24
 kafka-consumer-groups.sh --bootstrap-server $KAFKAS --group $GROUP_ID --reset-offsets --all-topics --to-datetime=YYYY-MM-DDTHH:mm:SS.sss

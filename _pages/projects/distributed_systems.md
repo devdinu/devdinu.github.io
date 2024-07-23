@@ -1,5 +1,3 @@
-# Distributed System
-
 There is a lot i've learned by building distributed systems with huge scale. The following has plenty of articles/content online. This is just a summary.
 
 Rather than just code, your architecture or design of system evolves.
